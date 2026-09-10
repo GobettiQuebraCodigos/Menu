@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'cadastros/cadastro_indicador.dart';
 
 class TelaPrincipal extends StatefulWidget {
   const TelaPrincipal({super.key});
@@ -49,10 +50,20 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             leading: Icon(Icons.chevron_right),
             title: Text('Equipamento'),
           ),
-          const ListTile(
-            leading: Icon(Icons.chevron_right),
-            title: Text('Indicador'),
-          ),
+          ListTile(
+            leading: const Icon(Icons.chevron_right),
+            title: const Text('Indicador'),
+            onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+            context,
+            MaterialPageRoute(
+            builder: (context) =>
+            const CadastroIndicadorPage(),
+            ),
+            );
+            },
+            ),
           const ListTile(
             leading: Icon(Icons.chevron_right),
             title: Text('Funcionário'),

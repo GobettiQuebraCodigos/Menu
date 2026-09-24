@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>
+	A localização é utilizada para registrar
+	o local do acesso ao aplicativo.
+	</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>
 	Este aplicativo utiliza suas fotos para

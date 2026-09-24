@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'cadastros/cadastro_indicador.dart';
 import 'cadastros/cadastro_usuario.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'login_page.dart';
 
 class TelaPrincipal extends StatefulWidget {
   const TelaPrincipal({super.key});
@@ -12,20 +14,24 @@ class TelaPrincipal extends StatefulWidget {
 class _TelaPrincipalState extends State<TelaPrincipal> {
   bool cadastroAberto = false;
 
+  Future<void> sair() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('loginRealizado', false);
+    if (!mounted) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginPage()),
+    );
+  }
+
   Widget montarMenu() {
     return ListView(
       padding: EdgeInsets.zero,
       children: [
         const DrawerHeader(
-          child: Text(
-            'Menu Principal',
-            style: TextStyle(fontSize: 22),
-          ),
+          child: Text('Menu Principal', style: TextStyle(fontSize: 22)),
         ),
-        const ListTile(
-          leading: Icon(Icons.home),
-          title: Text('Início'),
-        ),
+        const ListTile(leading: Icon(Icons.home), title: Text('Início')),
         ListTile(
           leading: const Icon(Icons.app_registration),
           title: const Text('Cadastro'),
@@ -94,15 +100,9 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Usina App'),
-      ),
-      drawer: Drawer(
-        child: montarMenu(),
-      ),
-      body: const Center(
-        child: Text('Tela Principal'),
-      ),
+      appBar: AppBar(title: const Text('Usina App')),
+      drawer: Drawer(child: montarMenu()),
+      body: const Center(child: Text('Tela Principal')),
     );
   }
 }
